@@ -84,7 +84,8 @@ class HashTable:
 
         Fill this in.
         '''
-        pass
+        self.storage.extend([None] * self.capacity)
+        self.capacity *= 2
 
 
 
