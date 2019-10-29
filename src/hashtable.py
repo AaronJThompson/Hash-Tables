@@ -51,7 +51,9 @@ class HashTable:
 
         Fill this in.
         '''
-        pass
+        if (self.storage[self.capacity - 1] is not None):
+            self.resize()
+        
 
 
 
@@ -86,10 +88,10 @@ class HashTable:
         '''
         self.storage.extend([None] * self.capacity)
         self.capacity *= 2
+  
 
-
-
-if __name__ == "__main__":
+ 
+if  __name__ == "__main__":
     ht = HashTable(2)
 
     ht.insert("line_1", "Tiny hash table")
