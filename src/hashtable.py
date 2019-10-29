@@ -89,6 +89,11 @@ class HashTable:
         current_val = self.storage[hashed_key]
         if current_val is None:
             print("Error, key not found")
+        else:
+            value = current_val.lookup_chain(key)
+            if value is None:
+                print("Error, key not found")
+            return value
 
 
     def retrieve(self, key):
