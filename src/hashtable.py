@@ -13,6 +13,14 @@ class LinkedPair:
             return
         self.next.add_to_end(key,value)
 
+    def lookup_chain(self, key):
+        if self.key == key:
+            return self.value
+        elif self.next is None:
+            return None
+        else:
+            return self.next.lookup_chain(key)
+
 
 class HashTable:
     '''
@@ -77,7 +85,10 @@ class HashTable:
 
         Fill this in.
         '''
-        pass
+        hashed_key = self._hash_mod(key)
+        current_val = self.storage[hashed_key]
+        if current_val is None:
+            print("Error, key not found")
 
 
     def retrieve(self, key):
