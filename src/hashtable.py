@@ -101,8 +101,15 @@ class HashTable:
 
         Fill this in.
         '''
-        self.storage.extend([None] * self.capacity)
         self.capacity *= 2
+        store = self.storage[:]
+        self.storage = [None] * self.capacity
+        for bucket in store:
+            node = bucket
+            while node is not None:
+                self.insert(node.key, node.value)
+                node = node.next
+
   
 
  
