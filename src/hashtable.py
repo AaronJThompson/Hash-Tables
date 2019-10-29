@@ -58,10 +58,14 @@ class HashTable:
 
         Fill this in.
         '''
-        if (self.storage[self.capacity - 1] is not None):
+        if None not in self.storage:
             self.resize()
         hashed_key = self._hash_mod(key)
-        if (self)
+        current_val = self.storage[hashed_key]
+        if current_val is None:
+            self.storage[hashed_key] = LinkedPair(key, value)
+        else:
+            current_val.add_to_end(key, value)
 
 
 
