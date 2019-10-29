@@ -9,7 +9,7 @@ class LinkedPair:
 
     def lookup_chain(self, key):
         if self.key == key:
-            return self.value
+            return self
         elif self.next is None:
             return None
         else:
@@ -91,7 +91,7 @@ class HashTable:
         if current_val is None:
             return None
         else:
-            value = current_val.lookup_chain(key)
+            value = current_val.lookup_chain(key).value
             return value
 
     def resize(self):
