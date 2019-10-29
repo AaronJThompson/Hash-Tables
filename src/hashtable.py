@@ -41,9 +41,12 @@ class HashTable:
 
         OPTIONAL STRETCH: Research and implement DJB2
         '''
+        # Initialize hash with value 5381
+        # For each char, multiply the hash by 33 and add the interger value of the char
+
         h = 5381
         for c in key:
-            h = (h << 5) + h + ord(c)
+            h = (h * 33) + ord(c)
         return h
 
 
