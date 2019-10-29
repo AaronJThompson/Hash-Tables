@@ -7,6 +7,13 @@ class LinkedPair:
         self.value = value
         self.next = None
 
+    def add_to_end(self, key, value):
+        if self.next is not None:
+            self.next = LinkedPair(key, value)
+            return
+        self.next.add_to_end(key,value)
+
+
 class HashTable:
     '''
     A hash table that with `capacity` buckets
@@ -53,7 +60,8 @@ class HashTable:
         '''
         if (self.storage[self.capacity - 1] is not None):
             self.resize()
-        
+        hashed_key = self._hash_mod(key)
+        if (self)
 
 
 
