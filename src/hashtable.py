@@ -7,12 +7,6 @@ class LinkedPair:
         self.value = value
         self.next = None
 
-    def add_to_end(self, key, value):
-        if self.next is not None:
-            self.next = LinkedPair(key, value)
-            return
-        self.next.add_to_end(key,value)
-
     def lookup_chain(self, key):
         if self.key == key:
             return self.value
@@ -66,14 +60,10 @@ class HashTable:
 
         Fill this in.
         '''
-        if None not in self.storage:
-            self.resize()
         hashed_key = self._hash_mod(key)
         current_val = self.storage[hashed_key]
-        if current_val is None:
-            self.storage[hashed_key] = LinkedPair(key, value)
-        else:
-            current_val.add_to_end(key, value)
+        self.storage[hashed_key] = LinkedPair(key, value)
+        self.storage[hashed_key].next = current_val
 
 
 
@@ -85,15 +75,7 @@ class HashTable:
 
         Fill this in.
         '''
-        hashed_key = self._hash_mod(key)
-        current_val = self.storage[hashed_key]
-        if current_val is None:
-            print("Error, key not found")
-        else:
-            value = current_val.lookup_chain(key)
-            if value is None:
-                print("Error, key not found")
-            return value
+        pass
 
 
     def retrieve(self, key):
@@ -104,8 +86,13 @@ class HashTable:
 
         Fill this in.
         '''
-        pass
-
+        hashed_key = self._hash_mod(key)
+        current_val = self.storage[hashed_key]
+        if current_val is None:
+            return None
+        else:
+            value = current_val.lookup_chain(key)
+            return value
 
     def resize(self):
         '''
